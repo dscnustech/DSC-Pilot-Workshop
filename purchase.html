@@ -6,24 +6,71 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Financial Calculator <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./purchase.html">Hired purchase</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
     <div id="divForm" class="card w-50">
         <div class="card-body">
-            <h1 class="card-title">Hire Purchase Calculator</h1>
-            <form onsubmit="return false;">
-                Price <br>
-                <input id="txtPrice" type="number" value="10000"> <br>
-                Deposit <br>
-                <input id="txtDeposit" type="number" value="1000"> <br>
-                Interest Rate <br>
-                <input id="txtInterest" type="number" value="3"> <br>
-                Years of Installment <br>
-                <input id="txtYears" type="number" value="5"> <br>
-                <button id="btnSubmit" type="submit">Submit</button> 
-                <button type="reset">Reset</button>
+            <h1 id="title" class="card-title">Hire Purchase Calculator</h1>
+            <form id="form" onsubmit="return false;">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-10">
+                        <input id="txtPrice" type="number" value="10000" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Deposit</label>
+                    <div class="col-sm-10">
+                        <input id="txtDeposit" type="number" value="1000" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Interest Rate</label>
+                    <div class="col-sm-10">
+                        <input id="txtInterest" type="number" value="3" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Years of Installment</label>
+                    <div class="col-sm-10">
+                        <input id="txtYears" type="number" value="5" class="form-control" required>
+                    </div>
+                </div>
+
+                <button id="btnSubmit" class="btn btn-success" type="submit">Submit</button> 
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
             </form>
-            <span id="txtVal"></span>
+            <div id="divBalance" class="card">
+                <div class="card-header">
+                    Amount to be paid
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        Amount: $<span id="txtVal">0</span>
+                    </blockquote>
+                </div>
+            </div>
         </div>
     </div>
+
     <script>
         
         btnSubmit.addEventListener("click", caculate);
