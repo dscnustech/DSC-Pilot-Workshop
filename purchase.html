@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hire Purchase Calculator</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="divForm" class="card w-50">
+        <div class="card-body">
+            <h1 class="card-title">Hire Purchase Calculator</h1>
+            <form onsubmit="return false;">
+                Price <br>
+                <input id="txtPrice" type="number" value="10000"> <br>
+                Deposit <br>
+                <input id="txtDeposit" type="number" value="1000"> <br>
+                Interest Rate <br>
+                <input id="txtInterest" type="number" value="3"> <br>
+                Years of Installment <br>
+                <input id="txtYears" type="number" value="5"> <br>
+                <button id="btnSubmit" type="submit">Submit</button> 
+                <button type="reset">Reset</button>
+            </form>
+            <span id="txtVal"></span>
+        </div>
+    </div>
+    <script>
+        
+        btnSubmit.addEventListener("click", caculate);
+        var txtPrice = document.getElementById("txtPrice").getAttribute("value");
+        var txtDeposit = document.getElementById("txtDeposit").getAttribute("value");
+        var txtInterest = document.getElementById("txtInterest").getAttribute("value");
+        var txtYears = document.getElementById("txtYears").getAttribute("value");
+        var loan, interestamt, total, monthlypayment
+
+        function caculate(){
+            loan = txtPrice - txtDeposit;
+            interestamt = (loan * txtInterest / 100) * txtYears;
+            total = interestamt + loan;
+            monthlypayment = total / (txtYears * 12);
+            document.getElementById("txtVal").innerHTML = monthlypayment;
+        }
+    </script>
+</body>
+</html>
