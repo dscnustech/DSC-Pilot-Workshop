@@ -1,14 +1,29 @@
-#divForm{
+#title{
     text-align: center;
+}
+
+#form{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#divForm{
     margin:auto;
     margin-top: 20px;
+}
+
+#txtDate{
+    margin-top: 15px;
 }
 
 #divBalance{
     margin-top: 15px;
 }
 
-input {
-    margin-top: 15px;
-    margin-bottom: 15px;
+#card_summary{
+    padding-bottom: 0;
+}
+
+.form-group{
+    margin-bottom: 0;
 }

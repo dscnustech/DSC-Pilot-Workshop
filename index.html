@@ -6,25 +6,73 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Financial Calculator <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./purchase.html">Hired purchase</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div id="divForm" class="card w-50">
         <div class="card-body">
-            <h1 class="card-title">Finance Calculator</h1>
-            <form onsubmit="return false;">
-                Amount <br>
-                <input id="txtAmt" type="number" value="10000" required> <br>
-                Type <br>
-                <input type="radio" name="incomeType" value="Income" checked="checked"> Income
-                <input type="radio" name="incomeType" value="Expense"> Expense<br>
-                Date of Input <br>
-                <input id="txtDate" type="date"> <br>
-                <button id="btnSubmit" type="submit" >Submit</button> 
-                <button type="reset">Reset</button>
+            <h1 id="title" class="card-title">Finance Calculator</h1>
+            <form id="form" onsubmit="return false;">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Amount</label>
+                    <div class="col-sm-10">
+                        <input id="txtAmt" type="number" value="10000" class="form-control" required> <br>
+                    </div>
+                </div>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-2 pt-0">Type</legend>
+                      <div class="col-sm-10">
+                        <div class="form-check">
+                            <input type="radio" name="incomeType" value="Income" checked="checked">
+                            <label class="form-check-label" for="gridRadios1">
+                                Income
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="incomeType" value="Expense">
+                            <label class="form-check-label" for="gridRadios2">
+                                Expense
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Input Date</label>
+                    <div class="col-sm-10">
+                        <input id="txtDate" type="date" class="form-control">
+                    </div>
+                </div>
+                <br/>
+                <button id="btnSubmit" class="btn btn-success" type="submit" >Submit</button> 
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
             </form>
-            <div id="divBalance">
-               Remaining Balance: $<span id="txtVal">0</span> 
-               <p>Last Updated On: <span id="txtUpdated"></span></p>
+
+            <div id="divBalance" class="card">
+                <div class="card-header">
+                  Account Summary
+                </div>
+                <div class="card-body" id="card_summary">
+                    Remaining Balance: $<span id="txtVal">0</span> 
+                    <p>Last Updated On: <span id="txtUpdated"></span></p>
+                </div>
             </div>
-            
         </div>
     </div>
     <script>
@@ -52,7 +100,10 @@
         function caculate(){
             var income_type = document.querySelector('input[name=incomeType]:checked').value;
             var txtAmt = document.getElementById("txtAmt").value;
-            if (income_type === "Income"){
+            if (parseInt(txtAmt) < 0){
+                alert("Negative Value Error")
+            }
+            else if (income_type === "Income"){
                 current_balance = current_balance + parseInt(txtAmt);
                 update_date();
             }
