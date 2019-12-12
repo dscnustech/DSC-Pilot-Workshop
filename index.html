@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+    <div id="divForm" class="card w-50">
+        <div class="card-body">
+            <h1 class="card-title">Finance Calculator</h1>
+            <form onsubmit="return false;">
+                Amount <br>
+                <input id="txtAmt" type="number" value="10000" required> <br>
+                Type <br>
+                <input type="radio" name="incomeType" value="Income" checked="checked"> Income
+                <input type="radio" name="incomeType" value="Expense"> Expense<br>
+                Date of Input <br>
+                <input id="txtDate" type="date"> <br>
+                <button id="btnSubmit" type="submit" >Submit</button> 
+                <button type="reset">Reset</button>
+            </form>
+            <div id="divBalance">
+               Remaining Balance: $<span id="txtVal">0</span> 
+               <p>Last Updated On: <span id="txtUpdated"></span></p>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        // Current balance = 0 and then set the val of the html to 0
+        var current_balance = 0;
+        
+        // Add an Onclick event
+        btnSubmit.addEventListener("click", caculate);
+        
+        // Change the date to current date
+        document.getElementById("txtDate").setAttribute("value", get_date());
+        
+        // Function for date
+        function get_date(){
+            var now = new Date();
+ 
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+            return today
+        }
+        
+        // Function to caculate
+        function caculate(){
+            var income_type = document.querySelector('input[name=incomeType]:checked').value;
+            var txtAmt = document.getElementById("txtAmt").value;
+            if (income_type === "Income"){
+                current_balance = current_balance + parseInt(txtAmt);
+                update_date();
+            }
+            else{
+                if (parseInt(txtAmt) <= current_balance){
+                    current_balance = current_balance - parseInt(txtAmt);
+                    update_date();
+                }
+                else{
+                    alert("You are spending more than you are earning! Don't do that!")
+                }
+                
+            }
+            document.getElementById("txtVal").textContent = current_balance;
+        }
+
+        // Function to update the date on the last update on date:
+        function update_date(){
+            var input_date = document.getElementById("txtDate").value;
+            document.getElementById("txtUpdated").textContent = input_date;
+        }
+    </script>
+</body>
+</html>

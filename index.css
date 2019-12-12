@@ -1,0 +1,14 @@
+#divForm{
+    text-align: center;
+    margin:auto;
+    margin-top: 20px;
+}
+
+#divBalance{
+    margin-top: 15px;
+}
+
+input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
