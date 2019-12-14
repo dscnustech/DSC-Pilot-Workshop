@@ -1,0 +1,60 @@
+<script>
+
+  // Current balance = 0 and then set the val of the html to 0
+  var current_balance = 0;
+
+  // Add an Onclick event
+  btnSubmit.addEventListener("click", calculate);
+  btnReset.addEventListener("click", reset);
+
+  // Change the date to current date
+  document.getElementById("txtDate").setAttribute("value", get_date());
+
+  // Function to caculate
+  function calculate() {
+      var income_type = document.querySelector('input[name=incomeType]:checked').value;
+      var txtAmt = document.getElementById("txtAmt").value;
+
+      //if input amount is negative
+      if (parseInt(txtAmt) < 0){
+          alert("Negative Value Error")
+      }
+
+      //if input amount is an income and not an expense
+      else if (income_type === "Income"){
+
+      }
+
+      //if input amount is positive and is an expense
+      else{
+          //if current balance is more than or equal to the input amount
+          if (){
+
+          }
+
+          //if current balance is less than the input amount
+          else{}
+
+      }
+      document.getElementById("txtVal").textContent = current_balance;
+  }
+
+      // Function to reset balance to 0
+      function reset() {
+          }
+
+  // Function for date
+  function get_date(){
+      var now = new Date();
+      var day = ("0" + now.getDate()).slice(-2);
+      var month = ("0" + (now.getMonth() + 1)).slice(-2);
+      var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+      return today
+  }
+
+  // Function to update the date on the last updated on date:
+  function update_date(){
+      var input_date = document.getElementById("txtDate").value;
+      document.getElementById("txtUpdated").textContent = input_date;
+  }
+</script>

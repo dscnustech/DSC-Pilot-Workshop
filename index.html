@@ -30,7 +30,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                        <input id="txtAmt" type="number" value="10000" class="form-control" required> <br>
+                        <input id="txtAmt" type="number" value="0" class="form-control" required> <br>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                 </div>
                 <br/>
                 <button id="btnSubmit" class="btn btn-success" type="submit" >Submit</button> 
-                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                <button id="btnReset" type="reset" class="btn btn-outline-secondary">Reset</button>
             </form>
 
             <div id="divBalance" class="card">
@@ -80,24 +80,15 @@
         var current_balance = 0;
         
         // Add an Onclick event
-        btnSubmit.addEventListener("click", caculate);
+        btnSubmit.addEventListener("click", calculate);
+        btnReset.addEventListener("click", reset); 
         
         // Change the date to current date
         document.getElementById("txtDate").setAttribute("value", get_date());
-        
-        // Function for date
-        function get_date(){
-            var now = new Date();
- 
-            var day = ("0" + now.getDate()).slice(-2);
-            var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-            return today
-        }
-        
         // Function to caculate
-        function caculate(){
+        function calculate() {
+
             var income_type = document.querySelector('input[name=incomeType]:checked').value;
             var txtAmt = document.getElementById("txtAmt").value;
             if (parseInt(txtAmt) < 0){
@@ -118,6 +109,24 @@
                 
             }
             document.getElementById("txtVal").textContent = current_balance;
+        }
+
+        // Function to reset balance to 0
+        function reset() {
+            current_balance = 0;
+            document.getElementById("txtVal").textContent = 0;
+            update_date();
+        }
+
+        // Function for date
+        function get_date(){
+            var now = new Date();
+ 
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+            return today
         }
 
         // Function to update the date on the last update on date:
